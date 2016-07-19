@@ -34,10 +34,13 @@ defmodule RouteDistance do
             nil -> Map.put(hash_map, origin, %{ destination => distance })
             _ -> Map.put(hash_map, origin, Map.put(hash_map[origin], destination, distance))
         end
+<<<<<<< HEAD
         result_map = case Map.get(new_map, destination) do
             nil -> Map.put(new_map, destination, %{ origin => distance })
             _ -> Map.put(new_map, destination, Map.put(new_map[destination], origin, distance))
         end
+=======
+>>>>>>> 8b38f3c7eef62093fd40cf4d137705b55ab02294
         locations_with_origin = case Enum.member?(locations, origin) do
             false -> Enum.concat(locations, [origin])
             _ -> locations
@@ -46,7 +49,11 @@ defmodule RouteDistance do
             false -> Enum.concat(locations_with_origin, [destination])
             _ -> locations_with_origin
         end
+<<<<<<< HEAD
         create_map(t, result_map, locations_with_destination)
+=======
+        create_map(t, new_map, locations_with_destination)
+>>>>>>> 8b38f3c7eef62093fd40cf4d137705b55ab02294
     end
 
     # Floyd-Warshall pseudocode:
@@ -67,6 +74,7 @@ defmodule RouteDistance do
              dist[0][i][j] = INFINITY
     """
 
+<<<<<<< HEAD
     defp floyd_warshall({locations, hash_map}) do
         pairs = Enum.filter((for i <- locations, j <- locations, do: {i,j}), fn {x,y} -> x != y end)
         floyd_warshall(pairs, hash_map, %{0 => {}})
@@ -82,6 +90,10 @@ defmodule RouteDistance do
             _ -> Map.put(dist[0], elem(h, 0), %{ elem(h,1) => 1234})
         end
         floyd_warshall(t, hash_map, new_dist)
+=======
+    defp floyd_warshall(input) do
+        input
+>>>>>>> 8b38f3c7eef62093fd40cf4d137705b55ab02294
     end
 
 end
