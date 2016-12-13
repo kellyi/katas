@@ -19,4 +19,4 @@ find([], [], ResultList) -> median(ResultList);
 find([], [H|T], ResultList) -> find([], T, [H|ResultList]);
 find([H|T], [], ResultList) -> find(T, [], [H|ResultList]);
 find([H1|T1], [H2|T2], ResultList) when H1 < H2 -> find(T1, [H2|T2], [H1|ResultList]);
-find(L, [H2|T2], ResultList) -> find(L, [T2], [H2|ResultList]).
+find(L, [H2|T2], ResultList) -> find(L, T2, [H2|ResultList]).
