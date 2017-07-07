@@ -11,27 +11,28 @@ droppunct str
     | last str == '\n' = init str
     | otherwise = str
 
-getturn :: [Char] -> Char
-getturn s = head s
-
 countblocks :: String -> Integer
 countblocks s = parsedint
-    where parsedint = read $ tail s :: Integer
+    where parsedint = read s :: Integer
 
 processlist :: [String] -> Integer
 processlist l = solve l 0 0 "north"
 
 solve :: [String] -> Integer -> Integer -> String -> Integer
 solve [] x y _ = abs(x) + abs(y)
-solve (h:t) x y "north"
-    | getturn h == 'L' = solve t (x - countblocks h) y "west"
-    | getturn h == 'R' = solve t (x + countblocks h) y "east"
-solve (h:t) x y "south"
-    | getturn h == 'L' = solve t (x + countblocks h) y "east"
-    | getturn h == 'R' = solve t (x - countblocks h) y "west"
-solve (h:t) x y "west"
-    | getturn h == 'L' = solve t x (y - countblocks h) "south"
-    | getturn h == 'R' = solve t x (y + countblocks h) "north"
-solve (h:t) x y "east"
-    | getturn h == 'L' = solve t x (y + countblocks h) "north"
-    | getturn h == 'R' = solve t x (y - countblocks h) "south"
+solve(('L':c):t) x y "north" = answer
+    where answer = solve t (x - countblocks c) y "west"
+solve(('R':c):t) x y "north" = answer
+    where answer = solve t (x + countblocks c) y "east"
+solve(('L':c):t) x y "south" = answer
+    where answer = solve t (x + countblocks c) y "east"
+solve(('R':c):t) x y "south" = answer
+    where answer = solve t (x - countblocks c) y "west"
+solve(('L':c):t) x y "west" = answer
+    where answer = solve t x (y - countblocks c) "south"
+solve(('R':c):t) x y "west" = answer
+    where answer = solve t x (y + countblocks c) "north"
+solve(('L':c):t) x y "east" = answer
+    where answer = solve t x (y + countblocks c) "north"
+solve(('R':c):t) x y "east" = answer
+    where answer = solve t x (y - countblocks c) "south"
