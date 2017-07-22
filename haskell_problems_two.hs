@@ -55,8 +55,20 @@ twelvehelper (Single a) = [a]
 twelvehelper (Multiple n a) = take n $ repeat a
 
 -- Run-length encoding of a list (direct solution).
-thirteen :: String -> [Element a]
-thirteen = undefined
+thirteen :: Eq a => [a] -> [Element a]
+thirteen [] = []
+thirteen (h:t) = thirteenhelper t [h] [] 
+
+thirteenhelper :: Eq a => [a] -> [a] -> [Element a] -> [Element a]
+thirteenhelper [] interim res = concat [res, [createelement interim]]
+thirteenhelper (h:t) interim res
+    | elem h interim = thirteenhelper t (concat [interim, [h]]) res
+    | otherwise = thirteenhelper t [h] (concat [res, [createelement interim]])
+
+createelement :: [a] -> Element a
+createelement l
+    | length l == 1 = Single (head l)
+    | otherwise = Multiple (length l) (head l)
 
 -- Duplicate the elements of a list.
 fourteen :: [n] -> [n]
