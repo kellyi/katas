@@ -104,3 +104,16 @@ nineteen [] _ = []
 nineteen l 0 = l
 nineteen (h:t) 1 = concat [t, [h]]
 nineteen (h:t) rot = nineteen (concat [t, [h]]) (rot - 1)
+
+-- Remove the K'th element from a list.
+twenty :: [a] -> Int -> [a]
+twenty [] _ = []
+twenty _ 0 = []
+twenty (_:t) 1 = t
+twenty l kth
+    | length l <= kth = []
+    | otherwise = twentyhelper l [] (kth - 1)
+
+twentyhelper :: [a] -> [a] -> Int -> [a]
+twentyhelper (_:t) res 0 = concat [res, t]
+twentyhelper (h:t) res kth = twentyhelper t (concat [res, [h]]) (kth - 1)
