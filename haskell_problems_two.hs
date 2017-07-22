@@ -97,3 +97,10 @@ eighteenhelper _ slice _ 1 = slice
 eighteenhelper (h:t) slice k i
     | k > 0 = eighteenhelper t slice (k - 1) i
     | otherwise = eighteenhelper t (concat [slice, [h]]) 0 (i - 1)
+
+-- Rotate a list N places to the left.
+nineteen :: [a] -> Int -> [a]
+nineteen [] _ = []
+nineteen l 0 = l
+nineteen (h:t) 1 = concat [t, [h]]
+nineteen (h:t) rot = nineteen (concat [t, [h]]) (rot - 1)
