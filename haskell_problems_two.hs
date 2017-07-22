@@ -37,7 +37,7 @@ ten [] = []
 ten l = map (\(h:t) -> (four (h:t), h)) (nine l)
 
 data Element a = Multiple Int a | Single a
-    deriving (Show)
+    deriving (Eq, Ord, Show)
 eleven :: Eq a => [a] -> [Element a]
 eleven [] = []
 eleven l = map elevenhelper (ten l)
@@ -45,3 +45,11 @@ eleven l = map elevenhelper (ten l)
 elevenhelper :: Eq a => (Int, a) -> Element a
 elevenhelper (1, x) = Single x
 elevenhelper (n, x) = Multiple n x
+
+-- Decode a run-length encoded list.
+twelve :: [Element a] -> [a]
+twelve l = concat $ map twelvehelper l
+
+twelvehelper :: Element a -> [a]
+twelvehelper (Single a) = [a]
+twelvehelper (Multiple n a) = take n $ repeat a
