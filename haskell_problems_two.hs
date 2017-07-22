@@ -75,3 +75,14 @@ sixteenhelper [] result _ _ = result
 sixteenhelper (h:t) result nth counter
     | nth == counter = sixteenhelper t result nth 0
     | otherwise = sixteenhelper t (concat [result, [h]]) nth (counter + 1)
+
+-- Split a list into two parts; the length of the first part is given.
+seventeen :: [a] -> Int -> ([a], [a])
+seventeen l len = seventeenhelper l [] len
+
+seventeenhelper :: [a] -> [a] -> Int -> ([a], [a])
+seventeenhelper [] h _ = (h, [])
+seventeenhelper l _ 0 = ([], l)
+seventeenhelper (h:t) res len
+    | length res == len = (res, (h:t))
+    | otherwise = seventeenhelper t (concat [res, [h]]) len
