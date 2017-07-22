@@ -53,3 +53,11 @@ twelve l = concat $ map twelvehelper l
 twelvehelper :: Element a -> [a]
 twelvehelper (Single a) = [a]
 twelvehelper (Multiple n a) = take n $ repeat a
+
+-- Run-length encoding of a list (direct solution).
+thirteen :: String -> [Element a]
+thirteen = undefined
+
+-- Duplicate the elements of a list.
+fourteen :: [n] -> [n]
+fourteen l = concat $ map (\x -> [x, x]) l
