@@ -61,3 +61,7 @@ thirteen = undefined
 -- Duplicate the elements of a list.
 fourteen :: [n] -> [n]
 fourteen l = concat $ map (\x -> [x, x]) l
+
+-- Replicate the elements of a list a given number of times.
+fifteen :: [n] -> Int -> [n]
+fifteen l times = concat $ map (\x -> take times $ repeat x) l
