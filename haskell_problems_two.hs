@@ -65,3 +65,13 @@ fourteen l = concat $ map (\x -> [x, x]) l
 -- Replicate the elements of a list a given number of times.
 fifteen :: [n] -> Int -> [n]
 fifteen l times = concat $ map (\x -> take times $ repeat x) l
+
+-- Drop every N'th element from a list.
+sixteen :: [n] -> Int -> [n]
+sixteen l nth = sixteenhelper l [] (nth - 1) 0
+
+sixteenhelper :: [n] -> [n] -> Int -> Int -> [n]
+sixteenhelper [] result _ _ = result
+sixteenhelper (h:t) result nth counter
+    | nth == counter = sixteenhelper t result nth 0
+    | otherwise = sixteenhelper t (concat [result, [h]]) nth (counter + 1)
