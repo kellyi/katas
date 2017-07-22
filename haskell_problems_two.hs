@@ -86,3 +86,14 @@ seventeenhelper l _ 0 = ([], l)
 seventeenhelper (h:t) res len
     | length res == len = (res, (h:t))
     | otherwise = seventeenhelper t (concat [res, [h]]) len
+
+-- Extract a slice from a list.
+eighteen :: [a] -> Int -> Int -> [a]
+eighteen l k i = eighteenhelper l [] (k - 1) (i - 1)
+
+eighteenhelper :: [a] -> [a] -> Int -> Int -> [a]
+eighteenhelper [] slice _ _ = slice
+eighteenhelper _ slice _ 1 = slice
+eighteenhelper (h:t) slice k i
+    | k > 0 = eighteenhelper t slice (k - 1) i
+    | otherwise = eighteenhelper t (concat [slice, [h]]) 0 (i - 1)
