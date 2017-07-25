@@ -47,3 +47,11 @@ thirtyfivehelper :: Int -> [Int] -> [Int]
 thirtyfivehelper n l
     | n == product l = sort l
     | otherwise = thirtyfivehelper n (concat [l, [div n (product l)]])
+
+-- Construct a list containing the prime factors and their multiplicity.
+thirtysix :: Int -> [(Int, Int)]
+thirtysix n = nub $ map (\x -> (x, thirtysixhelper x factors)) factors
+    where factors = thirtyfive n
+
+thirtysixhelper :: Int -> [Int] -> Int
+thirtysixhelper x l = length $ filter (\y -> y == x) l
