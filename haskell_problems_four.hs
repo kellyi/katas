@@ -28,3 +28,9 @@ thirtytwo a b
 -- Determine whether two positive integer numbers are coprime.
 thirtythree :: Int -> Int -> Bool
 thirtythree a b = thirtytwo a b == 1
+
+-- Calculate Euler's totient function
+thirtyfour :: Int -> Int
+thirtyfour n
+    | n == 1 = 1
+    | otherwise = length $ filter (\x -> thirtythree x n) [1..n - 1]
