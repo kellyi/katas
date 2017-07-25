@@ -55,3 +55,10 @@ thirtysix n = nub $ map (\x -> (x, thirtysixhelper x factors)) factors
 
 thirtysixhelper :: Int -> [Int] -> Int
 thirtysixhelper x l = length $ filter (\y -> y == x) l
+
+-- Calculate Euler's totient function phi(m) (improved).
+thirtyseven :: Int -> Int
+thirtyseven n = product $ map thirtysevenhelper $ thirtysix n
+
+thirtysevenhelper :: (Int, Int) -> Int
+thirtysevenhelper (x, y) = (x - 1) * x ^ (y - 1)
