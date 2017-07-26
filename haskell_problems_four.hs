@@ -62,3 +62,10 @@ thirtyseven n = product $ map thirtysevenhelper $ thirtysix n
 
 thirtysevenhelper :: (Int, Int) -> Int
 thirtysevenhelper (x, y) = (x - 1) * x ^ (y - 1)
+
+-- A list of prime numbers.
+thirtynine :: Int -> Int -> [Int]
+thirtynine mn mx
+    | mn <= 1 = []
+    | mn >= mx = []
+    | otherwise = filter (\x -> x >= mn) $ sieve mx
