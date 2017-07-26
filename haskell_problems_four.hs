@@ -78,3 +78,8 @@ fortyhelper :: Int -> [Int] -> Int -> [Int] -> (Int, Int)
 fortyhelper x (h:t) prior res
     | length res == 1 = (prior, last res)
     | otherwise = fortyhelper x t h (filter (\z -> z + h == x) t)
+
+-- Given a range of integers by its lower and upper limit,
+-- print a list of all even numbers and their Goldbach composition.
+fortyone :: Int -> Int -> [(Int, Int)]
+fortyone mn mx = map forty $ filter even [mn..mx]
