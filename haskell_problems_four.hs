@@ -69,3 +69,12 @@ thirtynine mn mx
     | mn <= 1 = []
     | mn >= mx = []
     | otherwise = filter (\x -> x >= mn) $ sieve mx
+
+-- Goldbach's conjecture.
+forty :: Int -> (Int, Int)
+forty x = fortyhelper x (sieve (x - 1)) 0 []
+
+fortyhelper :: Int -> [Int] -> Int -> [Int] -> (Int, Int)
+fortyhelper x (h:t) prior res
+    | length res == 1 = (prior, last res)
+    | otherwise = fortyhelper x t h (filter (\z -> z + h == x) t)
