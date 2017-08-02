@@ -1,5 +1,9 @@
 module Solve where
 -- https://wiki.haskell.org/99_questions/21_to_28
+import Data.List()
+import System.Random
+import Data.Array.IO
+import Control.Monad
 
 -- Insert an element at a given position into a list.
 twentyone :: [a] -> a -> Integer -> [a]
@@ -18,3 +22,18 @@ twentytwohelper :: Integer -> Integer -> [Integer] -> [Integer]
 twentytwohelper a b l
     | a == b = concat [l, [b]]
     | otherwise = twentytwohelper (a + 1) b (concat [l, [a]])
+
+-- Extract a given number of randomly selected elements from a list.
+twentythree :: Int -> [a] -> IO [a]
+twentythree count xs = do
+        ar <- newlist n xs
+        forM [1..count] $ \i -> do
+            j <- randomRIO (i,n)
+            vi <- readArray ar i
+            vj <- readArray ar j
+            writeArray ar j vi
+            return vj
+  where n = length xs
+        newlist :: Int -> [a] -> IO (IOArray Int a)
+        newlist c l =  newListArray (1, c) l
+
