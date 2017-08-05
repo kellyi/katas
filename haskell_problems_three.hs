@@ -37,3 +37,7 @@ twentythree count xs = do
         newlist :: Int -> [a] -> IO (IOArray Int a)
         newlist c l =  newListArray (1, c) l
 
+-- Lotto: Draw N different random numbers from the set 1..M.
+twentyfour :: IO [Integer]
+twentyfour = twentythree 6 [1..50]
+
