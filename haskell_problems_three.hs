@@ -44,3 +44,11 @@ twentyfour = twentythree 6 [1..50]
 -- Generate a random permutation of the elements of a list.
 twentyfive :: [a] -> IO [a]
 twentyfive l = twentythree (length l) l
+
+-- Sorting a list of lists according to length of sublists
+twentyeight :: [[a]] -> [[a]]
+twentyeight [] = []
+twentyeight (pivot:t) = res
+    where shorter = twentyeight [x | x <- t, length x <= length pivot]
+          longer = twentyeight [x | x <- t, length x > length pivot]
+          res = concat [shorter, [pivot], longer]
