@@ -41,3 +41,6 @@ twentythree count xs = do
 twentyfour :: IO [Integer]
 twentyfour = twentythree 6 [1..50]
 
+-- Generate a random permutation of the elements of a list.
+twentyfive :: [a] -> IO [a]
+twentyfive l = twentythree (length l) l
