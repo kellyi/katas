@@ -1,6 +1,6 @@
 module Solve where
 -- https://wiki.haskell.org/99_questions/21_to_28
-import Data.List()
+import Data.List
 import System.Random
 import Data.Array.IO
 import Control.Monad
@@ -44,6 +44,12 @@ twentyfour = twentythree 6 [1..50]
 -- Generate a random permutation of the elements of a list.
 twentyfive :: [a] -> IO [a]
 twentyfive l = twentythree (length l) l
+
+-- Generate the combinations of K distinct objects chosen from the N elements of a list
+twentysix :: [a] -> Int -> [[a]]
+twentysix list n
+    | null list || n == 0 = [[]]
+    | otherwise = filter (\x -> length x == n) $ subsequences list
 
 -- Sorting a list of lists according to length of sublists
 twentyeight :: [[a]] -> [[a]]
