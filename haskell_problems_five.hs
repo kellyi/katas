@@ -1,14 +1,15 @@
 module Solve where
 
 -- Define predicates and/2, or/2, nand/2, nor/2, xor/2, impl/2 and equ/2
-and :: Bool -> Bool -> Bool
-and True True = True
-and _ _ = False
+-- Continue problem P46 by defining and/2, or/2, etc as being operators.
+(^&%) :: Bool -> Bool -> Bool
+True ^&% True = True
+_ ^&% _ = False
 
-or :: Bool -> Bool -> Bool
-or True _ = True
-or _ True = True
-or _ _ = False
+($#@) :: Bool -> Bool -> Bool
+True $#@ _ = True
+_ $#@ True = True
+_ $#@ _ = False
 
 nand :: Bool -> Bool -> Bool
 nand False False = True
