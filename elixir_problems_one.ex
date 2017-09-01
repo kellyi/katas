@@ -72,4 +72,20 @@ defmodule Solve do
     def five([h|t], rev) do
         five(t, [h] ++ rev)
     end
+
+    def six(l) do
+        l == five(l)
+    end
+
+    def seven([]) do
+        []
+    end
+
+    def seven([h|t]) when is_list(h) do
+        seven(h) ++ seven(t)
+    end
+
+    def seven([h|t]) do
+        [h] ++ seven(t)
+    end
 end
