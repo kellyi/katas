@@ -88,4 +88,24 @@ defmodule Solve do
     def seven([h|t]) do
         [h] ++ seven(t)
     end
+
+    def eight([]) do
+        []
+    end
+
+    def eight([h|t]) do
+        eight(t, [h])
+    end
+
+    def eight([], deduped) do
+        five(deduped)
+    end
+
+    def eight([h|t], [dh|_] = deduped) when h == dh do
+        eight(t, deduped)
+    end
+
+    def eight([h|t], deduped) do
+        eight(t, [h] ++ deduped)
+    end
 end
