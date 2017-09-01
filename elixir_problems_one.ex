@@ -12,4 +12,20 @@ defmodule Solve do
     def one([_|t]) do
         one(t)
     end
+
+    def two([]) do
+        nil
+    end
+
+    def two([_|[]]) do
+        nil
+    end
+
+    def two ([e,_|[]]) do
+        e
+    end
+
+    def two([_|t]) do
+        two(t)
+    end
 end
