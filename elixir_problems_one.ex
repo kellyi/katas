@@ -49,11 +49,27 @@ defmodule Solve do
         0
     end
 
-    def four([h|[]]) do
+    def four([_|[]]) do
         1
     end
 
     def four([_|t]) do
         1 + four(t)
+    end
+
+    def five([]) do
+        []
+    end
+
+    def five([h|t]) do
+        five(t, [h])
+    end
+
+    def five([], rev) do
+        rev
+    end
+
+    def five([h|t], rev) do
+        five(t, [h] ++ rev)
     end
 end
