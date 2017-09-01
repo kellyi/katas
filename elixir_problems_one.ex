@@ -44,4 +44,16 @@ defmodule Solve do
     def three([_|t], n) do
         three(t, n - 1)
     end
+
+    def four([]) do
+        0
+    end
+
+    def four([h|[]]) do
+        1
+    end
+
+    def four([_|t]) do
+        1 + four(t)
+    end
 end
