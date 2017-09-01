@@ -108,4 +108,23 @@ defmodule Solve do
     def eight([h|t], deduped) do
         eight(t, [h] ++ deduped)
     end
+
+    def nine([]) do
+        []
+    end
+
+    def nine([h|t]) do
+        nine(t, [[h]])
+    end
+
+    def nine([], encoded) do
+        encoded
+    end
+
+    def nine([h|t], [eh|et] = encoded) do
+        case Enum.member?(eh, h) do
+            true -> nine(t, [[h] ++ eh|et])
+            _ -> nine(t, [[h]] ++ encoded)
+        end
+    end
 end
