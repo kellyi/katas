@@ -28,4 +28,20 @@ defmodule Solve do
     def two([_|t]) do
         two(t)
     end
+
+    def three([], _) do
+        nil
+    end
+
+    def three(_, 0) do
+        nil
+    end
+
+    def three([e|_], 1) do
+        e
+    end
+
+    def three([_|t], n) do
+        three(t, n - 1)
+    end
 end
