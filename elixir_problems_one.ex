@@ -118,7 +118,7 @@ defmodule Solve do
     end
 
     def nine([], encoded) do
-        encoded
+        five(encoded)
     end
 
     def nine([h|t], [eh|et] = encoded) do
@@ -126,5 +126,14 @@ defmodule Solve do
             true -> nine(t, [[h] ++ eh|et])
             _ -> nine(t, [[h]] ++ encoded)
         end
+    end
+
+    def ten([]) do
+        []
+    end
+
+    def ten(l) do
+        nine(l)
+        |> Enum.map(&{List.first(&1), Enum.count(&1)})
     end
 end
