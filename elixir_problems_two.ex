@@ -91,4 +91,24 @@ defmodule Solve do
         |> Enum.map(&([&1, &1]))
         |> List.flatten
     end
+
+    # 16: Replicate the elements of a list a given number of times.
+
+    def replicate_list([], _) do
+        []
+    end
+
+    def replicate_list(_, 0) do
+        []
+    end
+
+    def replicate_list(l, 1) do
+        l
+    end
+
+    def replicate_list(l, times) do
+        l
+        |> Enum.map(&(List.duplicate(&1, times)))
+        |> List.flatten
+    end
 end
