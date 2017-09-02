@@ -42,4 +42,23 @@ defmodule Solve do
     defp adjust_encoded_list(t) do
         t
     end
+
+    # 12: Decode a run-length encoded list.
+    def decode_run_length_encoded_list([]) do
+        []
+    end
+
+    def decode_run_length_encoded_list(l) do
+        l
+        |> Enum.map(&(decode_list/1))
+        |> List.flatten
+    end
+
+    defp decode_list({element,count}) do
+        List.duplicate(element, count)
+    end
+
+    defp decode_list(x) do
+        x
+    end
 end
