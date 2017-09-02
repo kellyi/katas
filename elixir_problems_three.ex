@@ -55,4 +55,17 @@ defmodule Solve do
             _ -> Enum.take(Enum.shuffle(l), n)
         end
     end
+
+    # 24: Lotto: Draw N different random numbers from the set 1..M.
+
+    def lotto(n, m) when n > m do
+        []
+    end
+
+    def lotto(n, m) do
+        case n == m do
+            true -> Enum.shuffle(list_from_range(1, m))
+            _ -> get_random(list_from_range(1, m), n)
+        end
+    end
 end
