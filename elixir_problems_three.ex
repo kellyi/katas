@@ -105,4 +105,16 @@ defmodule Solve do
     def combination(k, [x|xs]) do
         (for y <- combination(k - 1, xs), do: [x|y]) ++ combination(k, xs)
     end
+
+    # 28: Sorting a list of lists according to length of sublists
+
+    def length_sort([]) do
+        []
+    end
+
+    def length_sort([pivot|t]) do
+        (length_sort(for x <- t, Enum.count(x) < Enum.count(pivot), do: x)) ++
+        [pivot] ++
+        (length_sort(for x <- t, Enum.count(x) >= Enum.count(pivot), do: x))
+    end
 end
