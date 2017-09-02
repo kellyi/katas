@@ -68,4 +68,14 @@ defmodule Solve do
             _ -> get_random(list_from_range(1, m), n)
         end
     end
+
+    # 25: Generate a random permutation of the elements of a list.
+
+    def permute([]) do
+        []
+    end
+
+    def permute(l) do
+        Enum.shuffle(l)
+    end
 end
