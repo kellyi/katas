@@ -80,4 +80,15 @@ defmodule Solve do
     defp direct_encoding_mapper(e) do
         {:single, e}
     end
+
+    # 15: Duplicate the elements of a list.
+    def duplicate_list([]) do
+        []
+    end
+
+    def duplicate_list(l) do
+        l
+        |> Enum.map(&([&1, &1]))
+        |> List.flatten
+    end
 end
