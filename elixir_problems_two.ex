@@ -81,7 +81,7 @@ defmodule Solve do
         {:single, e}
     end
 
-    # 15: Duplicate the elements of a list.
+    # 14: Duplicate the elements of a list.
     def duplicate_list([]) do
         []
     end
@@ -92,7 +92,7 @@ defmodule Solve do
         |> List.flatten
     end
 
-    # 16: Replicate the elements of a list a given number of times.
+    # 15: Replicate the elements of a list a given number of times.
 
     def replicate_list([], _) do
         []
@@ -112,7 +112,7 @@ defmodule Solve do
         |> List.flatten
     end
 
-    # 17: Drop every N'th element from a list.
+    # 16: Drop every N'th element from a list.
 
     def drop_every_nth([], _) do
         []
