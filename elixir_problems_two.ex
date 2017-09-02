@@ -1,19 +1,19 @@
 # https://wiki.haskell.org/99_questions/11_to_20
 
 defmodule Solve do
-    def pack([]) do
+    defp pack([]) do
         []
     end
 
-    def pack([h|t]) do
+    defp pack([h|t]) do
         pack(t, [[h]])
     end
 
-    def pack([], encoded) do
+    defp pack([], encoded) do
         Enum.reverse(encoded)
     end
 
-    def pack([h|t], [eh|et] = encoded) do
+    defp pack([h|t], [eh|et] = encoded) do
         case Enum.member?(eh, h) do
             true -> pack(t, [[h] ++ eh|et])
             _ -> pack(t, [[h]] ++ encoded)
@@ -60,5 +60,24 @@ defmodule Solve do
 
     defp decode_list(x) do
         x
+    end
+
+    # 13: Run-length encoding of a list (direct solution).
+
+    def direct_run_length_encoding([]) do
+        []
+    end
+
+    def direct_run_length_encoding(l) do
+        modified_run_length_encoding(l)
+        |> Enum.map(&(direct_encoding_mapper/1))
+    end
+
+    defp direct_encoding_mapper({element, count}) do
+        {:multiple, count, element}
+    end
+
+    defp direct_encoding_mapper(e) do
+        {:single, e}
     end
 end
