@@ -210,4 +210,33 @@ defmodule Solve do
     def rotate_list([h|t], n) do
         rotate_list(t ++ [h], n - 1)
     end
+
+    # 20: Remove the K'th element from a list.
+
+    def remove_kth_element([], _) do
+        []
+    end
+
+    def remove_kth_element(l, 0) do
+        l
+    end
+
+    def remove_kth_element([_|t], 1) do
+        t
+    end
+
+    def remove_kth_element(l, n) do
+        case n > Enum.count(l) do
+            true -> l
+            _ -> remove_kth_element(l, n, [])
+        end
+    end
+
+    def remove_kth_element([_|t], 1, acc) do
+        Enum.reverse(acc) ++ t
+    end
+
+    def remove_kth_element([h|t], n, acc) do
+        remove_kth_element(t, n - 1, [h|acc])
+    end
 end
