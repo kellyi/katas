@@ -78,4 +78,31 @@ defmodule Solve do
     def permute(l) do
         Enum.shuffle(l)
     end
+
+    # 26: Generate the combinations of K distinct objects chosen from the N
+    # elements of a list
+
+    def generate_combinations(_, []) do
+        []
+    end
+
+    def generate_combinations(k, n) do
+        case k > Enum.count(n) do
+            true -> nil
+            _ -> combination(k, n)
+        end
+    end
+
+    # from https://stackoverflow.com/a/30587756
+    def combination(0, _) do
+        [[]]
+    end
+
+    def combination(_, []) do
+        []
+    end
+
+    def combination(k, [x|xs]) do
+        (for y <- combination(k - 1, xs), do: [x|y]) ++ combination(k, xs)
+    end
 end
