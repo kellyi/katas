@@ -140,4 +140,30 @@ defmodule Solve do
     def drop_every_nth([h|t], n, counter, acc) do
         drop_every_nth(t, n, counter - 1, [h|acc])
     end
+
+    # 17: Split a list into two parts; the length of the first part is given.
+
+    def split_list([], _) do
+        [[],[]]
+    end
+
+    def split_list(l, 0) do
+        [[], l]
+    end
+
+    def split_list([h|t], 1) do
+        [[h], t]
+    end
+
+    def split_list(l, n) do
+        split_list(l, n, [])
+    end
+
+    def split_list(l, 0, acc) do
+        [Enum.reverse(acc), l]
+    end
+
+    def split_list([h|t], n, acc) do
+        split_list(t, n - 1, [h|acc])
+    end
 end
