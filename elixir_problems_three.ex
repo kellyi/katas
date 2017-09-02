@@ -25,4 +25,17 @@ defmodule Solve do
     def insert([h|t], element, n, acc) do
         insert(t, element, n - 1, [h|acc])
     end
+
+    # 22: Create a list containing all integers within a given range.
+
+    def list_from_range(start, finish) when start > finish do
+        nil
+    end
+
+    def list_from_range(start, finish) do
+        case start == finish do
+            true -> [start]
+            _ -> Enum.to_list(start..finish)
+        end
+    end
 end
