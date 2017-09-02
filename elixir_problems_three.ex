@@ -38,4 +38,21 @@ defmodule Solve do
             _ -> Enum.to_list(start..finish)
         end
     end
+
+    # 23: Extract a given number of randomly selected elements from a list.
+
+    def get_random([], _) do
+        []
+    end
+
+    def get_random(_, 0) do
+        []
+    end
+
+    def get_random(l, n) do
+        case n >= Enum.count(l) do
+            true -> l
+            _ -> Enum.take(Enum.shuffle(l), n)
+        end
+    end
 end
