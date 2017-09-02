@@ -166,4 +166,30 @@ defmodule Solve do
     def split_list([h|t], n, acc) do
         split_list(t, n - 1, [h|acc])
     end
+
+    # 18: Extract a slice from a list.
+
+    def slice([], _, _) do
+        []
+    end
+
+    def slice(_, first, last) when last <= first do
+        []
+    end
+
+    def slice(l, first, last) do
+        slice(l, first, last, [])
+    end
+
+    def slice(_, 1, 1, acc) do
+        Enum.reverse(acc)
+    end
+
+    def slice([h|t], 1, last, acc) do
+        slice(t, 1, last - 1, [h|acc])
+    end
+
+    def slice([_|t], first, last, acc) do
+        slice(t, first - 1, last - 1, acc)
+    end
 end
