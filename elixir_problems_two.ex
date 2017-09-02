@@ -111,4 +111,33 @@ defmodule Solve do
         |> Enum.map(&(List.duplicate(&1, times)))
         |> List.flatten
     end
+
+    # 17: Drop every N'th element from a list.
+
+    def drop_every_nth([], _) do
+        []
+    end
+
+    def drop_every_nth(l, n) when n < 2 do
+        case n do
+            1 -> []
+            _ -> l
+        end
+    end
+
+    def drop_every_nth(l, n) do
+        drop_every_nth(l, n - 1, n - 1, [])
+    end
+
+    def drop_every_nth([], _, _, acc) do
+        Enum.reverse(acc)
+    end
+
+    def drop_every_nth([_|t], n, 0, acc) do
+        drop_every_nth(t, n, n, acc)
+    end
+
+    def drop_every_nth([h|t], n, counter, acc) do
+        drop_every_nth(t, n, counter - 1, [h|acc])
+    end
 end
