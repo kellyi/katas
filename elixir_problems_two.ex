@@ -192,4 +192,22 @@ defmodule Solve do
     def slice([_|t], first, last, acc) do
         slice(t, first - 1, last - 1, acc)
     end
+
+    # 19: Rotate a list N places to the left.
+
+    def rotate_list([], _) do
+        []
+    end
+
+    def rotate_list(l, 0) do
+        l
+    end
+
+    def rotate_list([h|t], 1) do
+        t ++ [h]
+    end
+
+    def rotate_list([h|t], n) do
+        rotate_list(t ++ [h], n - 1)
+    end
 end
