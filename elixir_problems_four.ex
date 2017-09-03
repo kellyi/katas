@@ -21,4 +21,11 @@ defmodule Solve do
     # Determine whether two positive integer numbers are coprime.
     def coprime(x, y), do: gcd(x, y) == 1
 
+    # Calculate Euler's totient function.
+    def phi(1), do: 1
+    def phi(n) do
+        Enum.to_list(1..n-1)
+        |> Enum.filter(&(coprime(&1, n)))
+        |> Enum.count
+    end
 end
