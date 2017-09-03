@@ -28,4 +28,14 @@ defmodule Solve do
         |> Enum.filter(&(coprime(&1, n)))
         |> Enum.count
     end
+
+    # Determine the prime factors of a given positive integer.
+    def prime_factors(0), do: []
+    def prime_factors(1), do: []
+    def prime_factors(2), do: []
+    def prime_factors(n) do
+        Enum.to_list(2..n)
+        |> sieve([])
+        |> Enum.reject(&(rem(n, &1) != 0 or &1 == n))
+    end
 end
