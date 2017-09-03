@@ -18,4 +18,7 @@ defmodule Solve do
     def gcd(x, y) when x > y, do: gcd(x - y, y)
     def gcd(x, y), do: gcd(x, (y - x))
 
+    # Determine whether two positive integer numbers are coprime.
+    def coprime(x, y), do: gcd(x, y) == 1
+
 end
