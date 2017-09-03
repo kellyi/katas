@@ -12,4 +12,10 @@ defmodule Solve do
     defp sieve([h|t], primes) do
         sieve(t |> Enum.filter(&(&1 / h != div(&1, h))), primes ++ [h])
     end
+
+    # Determine the greatest common divisor of two positive integer numbers.
+    def gcd(x, y) when x == y, do: x
+    def gcd(x, y) when x > y, do: gcd(x - y, y)
+    def gcd(x, y), do: gcd(x, (y - x))
+
 end
