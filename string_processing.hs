@@ -1,5 +1,6 @@
 module StringProcessing where
 import Data.Char
+import Data.List
 
 replaceThe :: String -> String
 replaceThe = unwords . map notThe . words
@@ -27,3 +28,11 @@ countVowels = length . filter isVowel
 
 isVowel :: Char -> Bool
 isVowel = flip elem "aeiou" . toLower
+
+maybeMostlyConsonants :: String -> Maybe String
+maybeMostlyConsonants s = checkChar s (partition isVowel s)
+
+checkChar :: String -> (String, String) -> Maybe String
+checkChar s (v, c)
+    | length v > length c = Nothing
+    | otherwise = Just s
