@@ -18,7 +18,7 @@ defmodule Solve do
   end
 
   defp run_instructions(l) do
-    run_instructions(l, Map.new(Enum.map(l, fn(x) -> hd(x) end), fn(x) -> {x,0} end), 0)
+    run_instructions(l, Map.new(Enum.map(l, fn(x) -> hd(x) end), fn(x) -> {x, 0} end), 0)
   end
 
   defp run_instructions([], map, highest_value) do
@@ -27,7 +27,8 @@ defmodule Solve do
 
   defp run_instructions([[key, count, condition]|t], map, highest_value) do
     case check_condition(condition, map) do
-      true -> run_instructions(t, update_map(key, count, map), update_max(map, highest_value))
+      true ->
+        run_instructions(t, update_map(key, count, map), Enum.max([get_max(map), highest_value]))
       _ -> run_instructions(t, map, highest_value)
     end
   end
@@ -39,13 +40,6 @@ defmodule Solve do
 
   defp update_map(key, count, map) do
     Map.replace(map, key, Map.get(map, key) + count)
-  end
-
-  defp update_max(map, highest_value) do
-    case get_max(map) > highest_value do
-      true -> get_max(map)
-      _ -> highest_value
-    end
   end
 
   defp get_max(map) do
