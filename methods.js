@@ -13,3 +13,9 @@ Array.prototype.chunk = function(count) {
         .map(e => e.reverse())
         .reverse();
 };
+
+Array.prototype.compact = function() {
+    return this.filter(e => e);
+};
+
+console.log([1,2, false, undefined, null, 0, true].compact());
