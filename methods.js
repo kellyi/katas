@@ -23,4 +23,16 @@ Array.prototype.fromPairs = function() {
         Object.assign({}, acc, {
             [k]: v,
         }), {});
-}
+};
+
+String.prototype.camelCase = function() {
+    return this
+        .split(/[^a-zA-Z]/g)
+        .compact()
+        .map(e => e.toLowerCase())
+        .reduce((acc, [h, ...rest]) => {
+            return !acc ?
+                `${h}${rest.join('')}` :
+                `${acc}${h.toUpperCase()}${rest.join('')}`;
+        }, '');
+};
