@@ -36,3 +36,14 @@ String.prototype.camelCase = function() {
                 `${acc}${h.toUpperCase()}${rest.join('')}`;
         }, '');
 };
+
+String.prototype.kebabCase = function() {
+    return this
+        .split(/[^a-zA-Z]/g)
+        .compact()
+        .map(e => e.toLowerCase())
+        .join('-')
+};
+
+console.log("Foo Bar".kebabCase());
+console.log("foo_bar".kebabCase());
