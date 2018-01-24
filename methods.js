@@ -18,4 +18,9 @@ Array.prototype.compact = function() {
     return this.filter(e => e);
 };
 
-console.log([1,2, false, undefined, null, 0, true].compact());
+Array.prototype.fromPairs = function() {
+    return this.reduce((acc, [k, v]) =>
+        Object.assign({}, acc, {
+            [k]: v,
+        }), {});
+}
