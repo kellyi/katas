@@ -25,6 +25,18 @@ Array.prototype.fromPairs = function() {
         }), {});
 };
 
+Array.prototype.flatten = function() {
+    return this
+        .reduce((acc, next) =>
+            acc.concat(Array.isArray(next) ? next.flatten() : next), []);
+}
+
+Array.prototype.flatMap = function(fn) {
+    return this
+        .reduce((acc, next) =>
+            acc.concat(Array.isArray(next) ? next.flatMap(fn) : fn(next)), []);
+}
+
 String.prototype.camelCase = function() {
     return this
         .split(/[^a-zA-Z]/g)
@@ -44,6 +56,3 @@ String.prototype.kebabCase = function() {
         .map(e => e.toLowerCase())
         .join('-')
 };
-
-console.log("Foo Bar".kebabCase());
-console.log("foo_bar".kebabCase());
