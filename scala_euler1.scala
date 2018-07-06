@@ -1,12 +1,8 @@
-// sum all multiples of 3 & 5 below 1000
-
-def isMultipleOfXorY(n: Int, x: Int, y: Int): Boolean = {
-    return (n % x == 0) || (n % y == 0)
+def maybeValue(n: Int): Option[Int] = n match {
+  case v if v % 5 == 0 => Some(v)
+  case v if v % 3 == 0 => Some(v)
+  case _ => None
 }
 
-def sumMultiplesOfXAndYBelow(x: Int, y: Int, below: Int): Int = {
-    val multiples = (1 to below-1) filter { isMultipleOfXorY(_, x, y) }
-    return multiples.reduceLeft(_+_)
-}
+println((1 to 999).flatMap { case e => maybeValue(e) }.sum)
 
-println(sumMultiplesOfXAndYBelow(3, 5, 1000))
